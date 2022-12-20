@@ -1,7 +1,8 @@
+import ExpenseForm from '~/components/expenses/ExpenseForm';
 type Props = {};
 
 const AddExpense = (props: Props) => {
-    return <div>AddExpense</div>;
+    return <ExpenseForm />;
 };
 
 export default AddExpense;

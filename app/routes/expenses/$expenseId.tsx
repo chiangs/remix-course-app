@@ -1,7 +1,9 @@
+import ExpenseForm from '~/components/expenses/ExpenseForm';
+
 type Props = {};
 
 const ViewEditExpense = (props: Props) => {
-    return <div>ViewEditExpense</div>;
+    return <ExpenseForm />;
 };
 
 export default ViewEditExpense;
