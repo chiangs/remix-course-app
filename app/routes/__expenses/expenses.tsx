@@ -1,5 +1,6 @@
-import { Outlet } from '@remix-run/react';
+import { Link, Outlet } from '@remix-run/react';
 import ExpenseList from '~/components/expenses/ExpensesList';
+import { FaPlus, FaDownload } from 'react-icons/fa';
 
 const MOCK_EXPENSES = [
     {
@@ -23,6 +24,16 @@ const ExpensesLayout = (props: Props) => {
         <>
             <Outlet />
             <main>
+                <section id='expenses-actions'>
+                    <Link to='add'>
+                        <FaPlus />
+                        <span>Add expenses</span>
+                    </Link>
+                    <a href='/expenses/raw'>
+                        <FaDownload />
+                        <span>Load raw data</span>
+                    </a>
+                </section>
                 <ExpenseList expenses={MOCK_EXPENSES} />
             </main>
         </>
