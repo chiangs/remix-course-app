@@ -1,7 +1,10 @@
+import ExpensesList from '~/components/expenses/ExpensesList';
+
 type Props = {};
 
-const ExpensesList = (props: Props) => {
-    return <div>ExpensesList</div>;
+const Expenses = (props: Props) => {
+    // return <ExpensesList />;
+    return <div>Expenses list</div>;
 };
 
-export default ExpensesList;
+export default Expenses;
