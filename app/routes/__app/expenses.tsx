@@ -1,6 +1,4 @@
-import type { LinksFunction } from '@remix-run/node';
 import { Outlet } from '@remix-run/react';
-import cssLink from '~/styles/expenses.css';
 import ExpenseList from '~/components/expenses/ExpensesList';
 
 const MOCK_EXPENSES = [
@@ -19,10 +17,6 @@ const MOCK_EXPENSES = [
 ];
 
 type Props = {};
-
-export const links: LinksFunction = () => [
-    { rel: 'stylesheet', href: cssLink },
-];
 
 const ExpensesLayout = (props: Props) => {
     return (
