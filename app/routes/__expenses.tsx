@@ -17,8 +17,6 @@ export const links: LinksFunction = () => [
     },
 ];
 
-type Props = {};
-
-const ExpensesAppLayout = (props: Props) => <Outlet />;
+const ExpensesAppLayout = () => <Outlet />;
 
 export default ExpensesAppLayout;
