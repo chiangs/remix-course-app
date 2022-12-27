@@ -22,6 +22,8 @@ export const action: ActionFunction = async ({ params, request }) => {
          * Form reverts to form which only accepts
          * GET and POST
          */
+        case 'DELETE':
+            await await deleteExpense(expenseId);
         case 'POST':
             if (intent === 'DELETE') {
                 await deleteExpense(expenseId);
