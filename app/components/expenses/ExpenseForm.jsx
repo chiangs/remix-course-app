@@ -1,7 +1,16 @@
-import { Link } from '@remix-run/react';
+import { Link, useActionData } from '@remix-run/react';
 
 function ExpenseForm() {
+    const actionData = useActionData();
     const today = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
+
+    const errors = actionData ? (
+        <ul>
+            {Object.values(actionData).map((e) => (
+                <li key={e}>{e}</li>
+            ))}
+        </ul>
+    ) : null;
 
     return (
         <form method='post' className='form' id='expense-form'>
@@ -39,6 +48,7 @@ function ExpenseForm() {
                     />
                 </p>
             </div>
+            {errors}
             <div className='form-actions'>
                 <button>Save Expense</button>
                 <Link to='..'>Cancel</Link>
