@@ -16,7 +16,7 @@ export const action: ActionFunction = async ({ request, params }) => {
         return error;
     }
 
-    addExpense(expense);
+    await addExpense(expense);
     return redirect('/expenses');
 };
 type Props = {};

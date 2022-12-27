@@ -6,6 +6,12 @@ function ExpenseListItem({ title, amount, id }) {
     const EXPENSE_ACTION_URL = `/expenses/${id}`;
 
     function deleteExpenseItemHandler() {
+        const shouldProceed = confirm(
+            'Are you sure? This will permanently delete this expense.'
+        );
+        if (!shouldProceed) {
+            return;
+        }
         fetcher.submit(null, {
             method: 'delete',
             action: EXPENSE_ACTION_URL,
