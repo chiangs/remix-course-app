@@ -4,6 +4,9 @@ import { FaDownload, FaPlus } from 'react-icons/fa';
 import ExpenseList from '~/components/expenses/ExpensesList';
 import { getExpenses } from '~/data/expenses.server';
 
+/**
+ * ! Remix calls all nested loaders in parallel, not sequentially.
+ */
 export const loader: LoaderFunction = () => getExpenses();
 
 type Props = {};
