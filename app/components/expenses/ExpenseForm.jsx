@@ -32,7 +32,7 @@ function ExpenseForm() {
     const navigation = useNavigation();
     const isSubmitting = navigation.state !== 'idle';
     const today = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
-
+    const formMethod = expense ? 'patch' : 'post';
     const defaultValues = expense
         ? {
               title: expense.title,
@@ -51,7 +51,7 @@ function ExpenseForm() {
     const submitLabel = isSubmitting ? 'Saving...' : 'Save Expense';
 
     return (
-        <Form method='post' className='form' id='expense-form'>
+        <Form method={formMethod} className='form' id='expense-form'>
             <p>
                 <label htmlFor='title'>Expense Title</label>
                 <input

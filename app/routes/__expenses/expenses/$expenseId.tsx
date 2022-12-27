@@ -4,7 +4,7 @@ import { redirect } from '@remix-run/node';
 import { useNavigate } from '@remix-run/react';
 import ExpenseForm from '~/components/expenses/ExpenseForm';
 import Modal from '~/components/util/Modal';
-import { updateExpense } from '~/data/expenses.server';
+import { deleteExpense, updateExpense } from '~/data/expenses.server';
 import { validateExpenseInput } from '~/data/validation.server';
 // import { getExpenseById } from '~/data/expenses.server';
 
@@ -12,15 +12,32 @@ import { validateExpenseInput } from '~/data/validation.server';
 //     getExpenseById(params.expenseId);
 
 export const action: ActionFunction = async ({ params, request }) => {
+    const method = request.method;
     const expenseId = params.expenseId;
     const formData = await request.formData();
+    const intent = await formData.get('intent');
     const expense = Object.fromEntries(formData);
-    try {
-        validateExpenseInput(expense);
-    } catch (error) {
-        return error;
+    switch (method) {
+        /**
+         * Form reverts to form which only accepts
+         * GET and POST
+         */
+        case 'POST':
+            if (intent === 'DELETE') {
+                await deleteExpense(expenseId);
+            }
+            break;
+        case 'PATCH':
+            try {
+                validateExpenseInput(expense);
+            } catch (error) {
+                return error;
+            }
+            await updateExpense(expenseId, expense);
+            break;
+        default:
+            return redirect('/expenses');
     }
-    await updateExpense(expenseId, expense);
     return redirect('/expenses');
 };
 
